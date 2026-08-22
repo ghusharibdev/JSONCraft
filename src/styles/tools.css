@@ -1,4 +1,4 @@
-.tool-layout{padding:var(--space-8) 0}
+.tool-layout{padding:var(--space-8) var(--space-6)}
 .tool-layout h1{margin-bottom:var(--space-2)}
 .tool-layout .tool-description{color:var(--color-text-secondary);font-size:var(--font-size-lg);margin-bottom:var(--space-8);max-width:720px}
 .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin-bottom:var(--space-8)}
@@ -64,7 +64,7 @@
 }
 .privacy-note .icon{font-size:var(--font-size-sm);flex-shrink:0}
 @media(max-width:768px){
-  .tool-layout{padding:var(--space-4) 0}
+  .tool-layout{padding:var(--space-4) var(--space-4)}
   .tool-layout h1{font-size:var(--font-size-2xl)}
   .tool-layout .tool-description{font-size:var(--font-size-base)}
   .tool-grid{grid-template-columns:1fr;gap:var(--space-4)}
@@ -76,7 +76,7 @@
   .panel-label{font-size:0.7rem}
 }
 @media(max-width:480px){
-  .tool-layout{padding:var(--space-3) 0}
+  .tool-layout{padding:var(--space-3) var(--space-3)}
   .tool-layout h1{font-size:var(--font-size-xl)}
   .json-textarea,.result-output{min-height:180px;padding:var(--space-2);font-size:0.75rem}
   .btn{padding:6px 10px;font-size:0.7rem}
