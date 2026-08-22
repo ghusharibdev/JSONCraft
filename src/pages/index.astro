@@ -8,6 +8,16 @@ import AdPlaceholder from '../components/AdPlaceholder.astro';
 import { SITE } from '../lib/tool-metadata';
 
 const faqItems = [
+  { question: 'What is a JSON formatter?', answer: 'A JSON formatter is a tool that organizes raw, messy JSON data by adding correct spacing, line breaks, and clear indentations so humans can read and check the code easily. It beautifies compact JSON into a neat, multi-line view, validates syntax, and can minify output for production use.' },
+  { question: 'How do I format a JSON file?', answer: 'To format a JSON file: paste your JSON into the input editor, select your preferred indentation (2 spaces, 4 spaces, or tabs), and click Format. You can also use keyboard shortcuts — press Ctrl+Enter (Cmd+Enter on Mac) to format instantly. The formatted output appears in the result panel, ready to copy or download.' },
+  { question: 'How can I format JSON in Chrome?', answer: 'You can format JSON directly in Chrome using this online tool — no extension needed. Simply visit JSONCraft, paste your JSON data, and click Format. For viewing raw JSON responses in Chrome, browser extensions like JSON Formatter or JSONView can auto-format JSON pages with syntax highlighting and collapsible tree views.' },
+  { question: 'How do I convert JSON into readable format?', answer: 'Use a JSON formatter tool like JSONCraft to convert compact JSON into readable format. Paste your minified or unformatted JSON, and the tool will add proper indentation, line breaks, and spacing. You can choose between 2-space, 4-space, or tab indentation for optimal readability.' },
+  { question: 'What is JSON used for?', answer: 'JSON (JavaScript Object Notation) is used for data interchange between servers and web applications, configuration files, API responses, storing structured data, and communication between different programming languages. It is the most common data format for web APIs and is supported by virtually every modern programming language.' },
+  { question: 'Which JSON formatter is the best?', answer: 'The best JSON formatter depends on your needs. JSONCraft offers a fast, free, browser-based solution with formatting, validation, minification, and beautification — all processed locally without uploading your data. For IDE users, VS Code has built-in formatting (Shift+Alt+F). For command line, Python offers json.tool module.' },
+  { question: 'What are JSON format examples?', answer: 'A basic JSON object uses curly braces: {"name": "Alice", "age": 30}. Arrays use square brackets: [1, 2, 3]. Nested structures combine both: {"user": {"name": "Bob", "tags": ["admin"]}}. Keys must always be double-quoted, strings use double quotes, while numbers and booleans (true/false) do not use quotes.' },
+  { question: 'How to format JSON in Notepad?', answer: 'Notepad does not have built-in JSON formatting. For quick formatting, copy your JSON and paste it into an online formatter like JSONCraft. For permanent solutions, use Notepad++ with the JSON Plugin, Visual Studio Code (built-in formatting), or Sublime Text with a JSON package installed.' },
+  { question: 'How do I create a JSON file?', answer: 'Create a JSON file by typing or pasting valid JSON data into a text editor and saving it with a .json extension. Start with a root object {} or array [], use double quotes for keys and string values, separate items with commas, and avoid trailing commas. Use JSONCraft to validate your JSON before saving.' },
+  { question: 'What is the best JSON file editor?', answer: 'For JSON editing, Visual Studio Code is widely considered the best free option — it offers syntax highlighting, auto-formatting, validation, and intellisense. Other great options include Sublime Text, Atom, and JetBrains WebStorm. For quick edits without installation, online tools like JSONCraft work directly in your browser.' },
   { question: 'Is my JSON data uploaded to a server?', answer: 'No. All JSON processing happens entirely in your browser using native JavaScript. Your data never leaves your device — there are no server calls, no analytics tracking your content, and no storage of your JSON data.' },
   { question: 'What is the difference between Format and Beautify?', answer: 'Format and Beautify both produce identical output. The tool supports formatting (pretty-printing), validation (checking syntax), minification (removing whitespace), and beautification — all accessible from the same interface. Simply paste your JSON and choose the operation you need.' },
   { question: 'What indentation options are available?', answer: 'You can choose between 2 spaces (default), 4 spaces, or tab indentation. 2 spaces is the most common format used by tools like Prettier and is recommended for most use cases. 4 spaces provides more visual separation for deeply nested structures.' },
@@ -42,6 +52,18 @@ const jsonLd = [
       { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
       { '@type': 'ListItem', position: 2, name: 'JSON Formatter', item: SITE.url + '/json-beautifier' },
     ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
   },
 ];
 ---
