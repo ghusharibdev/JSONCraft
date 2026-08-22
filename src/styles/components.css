@@ -44,3 +44,22 @@ details[open] .faq-q .arrow{transform:rotate(180deg);color:var(--color-primary)}
 .page-header{padding:var(--space-12) 0 var(--space-8);border-bottom:1px solid var(--color-border);margin-bottom:var(--space-8)}
 .page-header h1{margin-bottom:var(--space-3)}
 .page-header p{font-size:var(--font-size-lg);color:var(--color-text-secondary);max-width:640px}
+@media(max-width:768px){
+  .section-title{font-size:var(--font-size-lg);margin-top:var(--space-8)}
+  .hero-section{padding:var(--space-8) 0 var(--space-6)}
+  .hero-section h1{font-size:1.75rem}
+  .hero-section .subtitle{font-size:var(--font-size-base)}
+  .tools-grid{grid-template-columns:1fr;gap:var(--space-4)}
+  .related-grid{grid-template-columns:1fr}
+  .faq-q{padding:var(--space-3) var(--space-4);font-size:var(--font-size-sm)}
+  .faq-a{padding:0 var(--space-4) var(--space-4)}
+  .content-section{padding:var(--space-6) 0}
+  .page-header{padding:var(--space-6) 0 var(--space-4)}
+  .page-header h1{font-size:var(--font-size-2xl)}
+  .page-header p{font-size:var(--font-size-base)}
+}
+@media(max-width:480px){
+  .hero-section h1{font-size:1.5rem}
+  .breadcrumbs{font-size:var(--font-size-xs)}
+  .tool-card{padding:var(--space-4)}
+}
