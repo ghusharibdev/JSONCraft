@@ -1,0 +1,95 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import FAQ from '../components/FAQ.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+import AdPlaceholder from '../components/AdPlaceholder.astro';
+import { getToolBySlug, SITE } from '../lib/tool-metadata';
+
+const tool = getToolBySlug('json-minifier')!;
+
+const faqItems = [
+  { question: 'What does JSON minification do?', answer: 'It removes all unnecessary whitespace, line breaks, and indentation from your JSON while preserving the data structure. The result is functionally identical but significantly smaller.' },
+  { question: 'Will minification change my data?', answer: 'No. Minification only removes whitespace. The parsed data and its meaning are preserved exactly.' },
+  { question: 'How much space can I save?', answer: 'Typically 30-60% depending on how much whitespace and indentation your original JSON has.' },
+  { question: 'Is my data private?', answer: 'Yes. All minification happens in your browser. Your JSON data is never sent to any server.' },
+];
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'JSONCraft - JSON Minifier', url: SITE.url + '/json-minifier', description: 'Minify JSON by removing whitespace to reduce file size.', applicationCategory: 'DeveloperApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'JSON Minifier', item: SITE.url + '/json-minifier' },
+  ]},
+];
+
+const beforeJson = JSON.stringify({name:"JSONCraft",version:"1.0",tools:["formatter","validator","minifier","beautifier"]}, null, 2);
+const afterJson = JSON.stringify({name:"JSONCraft",version:"1.0",tools:["formatter","validator","minifier","beautifier"]});
+---
+<ToolLayout tool={tool} jsonLd={jsonLd}>
+  <div class="privacy-note">
+    <span class="icon">&#128274;</span>
+    <div><strong>100% Private.</strong> Your JSON is minified entirely in your browser. No data is ever sent to any server.</div>
+  </div>
+
+  <div class="tool-grid">
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-stats">
+          <span class="stat" id="min-char-count">0 chars</span>
+          <span class="stat" id="min-line-count">0 lines</span>
+        </div>
+      </div>
+      <textarea id="min-input" class="json-textarea" placeholder="Paste your JSON here to minify" spellcheck="false" aria-label="JSON input"></textarea>
+    </div>
+    <div class="result-panel">
+      <div class="panel-header"><span class="panel-label">Output</span></div>
+      <div id="min-status" class="status-bar hidden" role="status" aria-live="polite"></div>
+      <pre id="min-output" class="result-output empty" role="region" aria-label="Minified output" tabindex="0"></pre>
+    </div>
+  </div>
+
+  <div class="tool-actions">
+    <button id="min-minify" class="btn btn-primary" type="button">Minify</button>
+    <button id="min-clear" class="btn btn-ghost" type="button">Clear</button>
+    <button id="min-copy" class="btn btn-secondary" type="button">Copy</button>
+    <button id="min-download" class="btn btn-secondary" type="button">Download .json</button>
+    <span class="keyboard-hint">Ctrl/Cmd + Enter to minify</span>
+  </div>
+
+  <AdPlaceholder />
+
+  <section class="how-to-use">
+    <h2 class="section-title">How to Minify JSON</h2>
+    <ol>
+      <li><strong>Paste your formatted JSON</strong> into the input editor.</li>
+      <li>Click <strong>Minify</strong> or press <code>Ctrl+Enter</code>.</li>
+      <li>The output shows the <strong>compressed JSON</strong> with whitespace removed.</li>
+      <li>Copy or download the minified result.</li>
+    </ol>
+  </section>
+
+  <section class="examples-section">
+    <h2 class="section-title">Before and After</h2>
+    <h3>Input (formatted)</h3>
+    <pre><code set:html={beforeJson} /></pre>
+
+    <h3>Output (minified)</h3>
+    <pre><code set:html={afterJson} /></pre>
+    <p class="section-text">The minified version is significantly smaller while preserving all data.</p>
+  </section>
+
+  <section class="limitations-section">
+    <h2 class="section-title">Limitations</h2>
+    <ul>
+      <li>Invalid JSON cannot be minified. Fix syntax errors first.</li>
+      <li>Minification does not apply gzip or other compression algorithms.</li>
+      <li>For network transfer, also use gzip/brotli on top of minification.</li>
+    </ul>
+  </section>
+
+  <FAQ items={faqItems} />
+  <RelatedTools currentSlug="json-minifier" />
+</ToolLayout>
+
+<script is:inline src="/scripts/minifier.js"></script>

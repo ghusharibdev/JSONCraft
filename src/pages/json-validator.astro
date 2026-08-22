@@ -1,0 +1,107 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import FAQ from '../components/FAQ.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+import AdPlaceholder from '../components/AdPlaceholder.astro';
+import { getToolBySlug, SITE } from '../lib/tool-metadata';
+
+const tool = getToolBySlug('json-validator')!;
+
+const faqItems = [
+  { question: 'What JSON errors can this tool detect?', answer: 'It catches all syntax errors: missing commas, unclosed brackets, invalid strings, trailing commas, comments in JSON, single quotes, and any other violation of the JSON specification.' },
+  { question: 'Does it check JSON structure or just syntax?', answer: 'It validates JSON syntax using the browser native JSON.parse(). It does not validate against a JSON Schema. For schema validation, use a dedicated JSON Schema validator.' },
+  { question: 'Is my data private?', answer: 'Yes. All validation happens in your browser. Your JSON data is never sent to any server.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'JSONCraft - JSON Validator',
+    url: SITE.url + '/json-validator',
+    description: 'Validate JSON syntax and detect errors instantly in your browser.',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'JSON Validator', item: SITE.url + '/json-validator' },
+    ],
+  },
+];
+---
+<ToolLayout tool={tool} jsonLd={jsonLd}>
+  <div class="privacy-note">
+    <span class="icon">&#128274;</span>
+    <div><strong>100% Private.</strong> Your JSON is validated entirely in your browser. No data is ever sent to any server.</div>
+  </div>
+
+  <div class="tool-grid">
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-stats">
+          <span class="stat" id="val-char-count">0 chars</span>
+        </div>
+      </div>
+      <textarea id="val-input" class="json-textarea" placeholder="Paste your JSON here to validate" spellcheck="false" aria-label="JSON input"></textarea>
+    </div>
+    <div class="result-panel">
+      <div class="panel-header"><span class="panel-label">Result</span></div>
+      <div id="val-status" class="status-bar hidden" role="status" aria-live="polite"></div>
+      <pre id="val-output" class="result-output empty" role="region" aria-label="Validation result" tabindex="0"></pre>
+    </div>
+  </div>
+
+  <div class="tool-actions">
+    <button id="val-validate" class="btn btn-primary" type="button">Validate</button>
+    <button id="val-clear" class="btn btn-ghost" type="button">Clear</button>
+    <button id="val-copy" class="btn btn-secondary" type="button">Copy</button>
+    <span class="keyboard-hint">Ctrl/Cmd + Enter to validate</span>
+  </div>
+
+  <AdPlaceholder />
+
+  <section class="how-to-use">
+    <h2 class="section-title">How to Validate JSON</h2>
+    <ol>
+      <li><strong>Paste your JSON</strong> into the input editor.</li>
+      <li>Click <strong>Validate</strong> or press <code>Ctrl+Enter</code>.</li>
+      <li>The tool will show whether your JSON is <strong>valid</strong> or display the specific <strong>error</strong> with context.</li>
+      <li>Fix any reported issues and validate again.</li>
+    </ol>
+  </section>
+
+  <section class="examples-section">
+    <h2 class="section-title">Common Validation Results</h2>
+    <h3>Valid JSON</h3>
+    <pre><code set:html='{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30, &quot;active&quot;: true}' /></pre>
+    <p class="section-text">Returns: Valid JSON</p>
+
+    <h3>Missing Comma</h3>
+    <pre><code set:html='{&quot;name&quot;: &quot;Alice&quot; &quot;age&quot;: 30}' /></pre>
+    <p class="section-text">Returns: Syntax error pointing to the missing comma.</p>
+
+    <h3>Trailing Comma</h3>
+    <pre><code set:html='{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30,}' /></pre>
+    <p class="section-text">Returns: Unexpected token error at the trailing comma.</p>
+  </section>
+
+  <section class="limitations-section">
+    <h2 class="section-title">Limitations</h2>
+    <ul>
+      <li>Validates syntax only, not semantic structure or JSON Schema compliance.</li>
+      <li>Does not validate JSON data types beyond what the JSON spec defines.</li>
+      <li>Extremely large files may slow your browser.</li>
+    </ul>
+  </section>
+
+  <FAQ items={faqItems} />
+  <RelatedTools currentSlug="json-validator" />
+</ToolLayout>
+
+<script is:inline src="/scripts/validator.js"></script>

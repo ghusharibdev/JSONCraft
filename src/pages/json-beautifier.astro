@@ -1,0 +1,112 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import FAQ from '../components/FAQ.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+import AdPlaceholder from '../components/AdPlaceholder.astro';
+import { getToolBySlug, SITE } from '../lib/tool-metadata';
+
+const tool = getToolBySlug('json-beautifier')!;
+
+const faqItems = [
+  { question: 'What is the difference between Beautifier and Formatter?', answer: 'Both tools produce identical output using JSON.stringify with indentation. The Beautifier is a dedicated tool for pretty-printing, while the Formatter includes additional features like validation and minification.' },
+  { question: 'Does beautification add syntax highlighting?', answer: 'The beautifier focuses on clean indentation and formatting. Syntax highlighting may be added in a future update.' },
+  { question: 'Is my data private?', answer: 'Yes. All processing happens in your browser. Your JSON data is never sent to any server.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'JSONCraft - JSON Beautifier',
+    url: SITE.url + '/json-beautifier',
+    description: 'Beautify and format JSON with customizable indentation.',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'JSON Beautifier', item: SITE.url + '/json-beautifier' },
+    ],
+  },
+];
+---
+<ToolLayout tool={tool} jsonLd={jsonLd}>
+  <div class="privacy-note">
+    <span class="icon">&#128274;</span>
+    <div><strong>100% Private.</strong> Your JSON is beautified entirely in your browser. No data is ever sent to any server.</div>
+  </div>
+
+  <div class="tool-grid">
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-stats">
+          <span class="stat" id="bea-char-count">0 chars</span>
+          <span class="stat" id="bea-line-count">0 lines</span>
+        </div>
+      </div>
+      <textarea id="bea-input" class="json-textarea" placeholder="Paste your JSON here to beautify" spellcheck="false" aria-label="JSON input"></textarea>
+    </div>
+    <div class="result-panel">
+      <div class="panel-header"><span class="panel-label">Output</span></div>
+      <div id="bea-status" class="status-bar hidden" role="status" aria-live="polite"></div>
+      <pre id="bea-output" class="result-output empty" role="region" aria-label="Beautified output" tabindex="0"></pre>
+    </div>
+  </div>
+
+  <div class="tool-actions">
+    <div class="indent-selector">
+      <label for="bea-indent">Indent:</label>
+      <select id="bea-indent">
+        <option value="2" selected>2 spaces</option>
+        <option value="4">4 spaces</option>
+        <option value="tab">Tabs</option>
+      </select>
+    </div>
+    <button id="bea-beautify" class="btn btn-primary" type="button">Beautify</button>
+    <button id="bea-clear" class="btn btn-ghost" type="button">Clear</button>
+    <button id="bea-copy" class="btn btn-secondary" type="button">Copy</button>
+    <button id="bea-download" class="btn btn-secondary" type="button">Download .json</button>
+    <span class="keyboard-hint">Ctrl/Cmd + Enter to beautify</span>
+  </div>
+
+  <AdPlaceholder />
+
+  <section class="how-to-use">
+    <h2 class="section-title">How to Beautify JSON</h2>
+    <ol>
+      <li><strong>Paste your minified or unformatted JSON</strong> into the input editor.</li>
+      <li><strong>Choose your indentation</strong> style: 2 spaces, 4 spaces, or tabs.</li>
+      <li>Click <strong>Beautify</strong> or press <code>Ctrl+Enter</code>.</li>
+      <li>Copy or download the beautifully formatted result.</li>
+    </ol>
+  </section>
+
+  <section class="examples-section">
+    <h2 class="section-title">Before and After</h2>
+    <h3>Input (minified)</h3>
+    <pre><code set:html={minified} /></pre>
+
+    <h3>Output (beautified with 2 spaces)</h3>
+    <pre><code set:html={beautified} /></pre>
+    <p class="section-text">Complex nested structures become immediately readable.</p>
+  </section>
+
+  <section class="limitations-section">
+    <h2 class="section-title">Limitations</h2>
+    <ul>
+      <li>Invalid JSON cannot be beautified. Use the <a href="/json-validator">JSON Validator</a> first.</li>
+      <li>Beautification only affects whitespace, not the data itself.</li>
+      <li>Extremely large files may slow your browser.</li>
+    </ul>
+  </section>
+
+  <FAQ items={faqItems} />
+  <RelatedTools currentSlug="json-beautifier" />
+</ToolLayout>
+
+<script is:inline src="/scripts/beautifier.js"></script>
