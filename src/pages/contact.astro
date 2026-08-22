@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/tool-metadata';
+---
+<BaseLayout title="Contact JSONCraft — Get in Touch" description="Have questions or feedback about JSONCraft? Contact us." canonical={SITE.url + '/contact'}>
+  <Header />
+  <main>
+    <div class="container content-section">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">Contact</span>
+      </nav>
+      <h1>Contact Us</h1>
+      <p class="section-text">Have questions, feedback, or feature requests? We would love to hear from you.</p>
+
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="contact-name">Name</label>
+          <input type="text" id="contact-name" name="name" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" placeholder="How can we help?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+
+      <div class="privacy-note" style="margin-top:var(--space-8)">
+        <span class="icon">&#128231;</span>
+        <div>You can also reach us directly at <strong>hello@jsoncraft.dev</strong>. Replace this placeholder with your actual email address.</div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

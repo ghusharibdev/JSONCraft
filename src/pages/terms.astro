@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/tool-metadata';
+---
+<BaseLayout title="Terms of Service — JSONCraft" description="JSONCraft terms of service. Read the terms governing your use of our free JSON tools." canonical={SITE.url + '/terms'}>
+  <Header />
+  <main>
+    <div class="container content-section terms-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">Terms of Service</span>
+      </nav>
+      <h1>Terms of Service</h1>
+      <p class="section-text"><em>Last updated: January 2025</em></p>
+
+      <h2>Acceptance of Terms</h2>
+      <p class="section-text">By accessing and using JSONCraft, you agree to these terms of service. If you do not agree with any part of these terms, please do not use the service.</p>
+
+      <h2>Description of Service</h2>
+      <p class="section-text">JSONCraft provides free, browser-based tools for formatting, validating, minifying, and beautifying JSON data. All processing occurs locally in your browser.</p>
+
+      <h2>User Responsibility</h2>
+      <p class="section-text">You are solely responsible for the data you process using JSONCraft tools. While we do not access or store your data, you should ensure you have the right to process any JSON content you use.</p>
+
+      <h2>No Warranty</h2>
+      <p class="section-text">JSONCraft is provided "as is" without warranties of any kind. We do not guarantee that the tools will be error-free, uninterrupted, or suitable for any particular purpose.</p>
+
+      <h2>Limitation of Liability</h2>
+      <p class="section-text">In no event shall JSONCraft be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service.</p>
+
+      <h2>Intellectual Property</h2>
+      <p class="section-text">The JSONCraft name, design, and code are the property of JSONCraft. You may not copy, modify, or distribute any part of the service without permission.</p>
+
+      <h2>Changes to Terms</h2>
+      <p class="section-text">We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of the service constitutes acceptance of any changes.</p>
+
+      <h2>Contact</h2>
+      <p class="section-text">For questions about these terms, please visit our <a href="/contact">Contact page</a>.</p>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

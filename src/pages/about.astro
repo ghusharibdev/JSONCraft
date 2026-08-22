@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/tool-metadata';
+---
+<BaseLayout title="About JSONCraft — Free Online JSON Tools" description="JSONCraft provides free, private, browser-based JSON tools for developers. Learn about our mission and approach." canonical={SITE.url + '/about'}>
+  <Header />
+  <main>
+    <div class="container content-section about-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">About</span>
+      </nav>
+      <h1>About JSONCraft</h1>
+      <p class="section-text">JSONCraft is a collection of free, focused JSON tools built for developers who need fast and reliable data processing without compromising privacy.</p>
+
+      <h2>Our Approach</h2>
+      <p class="section-text">Every tool on JSONCraft processes data entirely in your browser using native JavaScript. Your JSON is never uploaded, transmitted, or stored on any server. This approach ensures complete privacy while delivering instant results.</p>
+
+      <h2>Why JSONCraft?</h2>
+      <ul>
+        <li><strong>Privacy by Design</strong> — No server processing means no data exposure risk.</li>
+        <li><strong>Zero Cost</strong> — No accounts, no subscriptions, no paywalls.</li>
+        <li><strong>Focused Tools</strong> — Each tool does one thing well, rather than trying to be everything.</li>
+        <li><strong>Developer-Friendly</strong> — Built with clean code, keyboard shortcuts, and efficient workflows.</li>
+        <li><strong>Accessible</strong> — Works across devices with proper accessibility support.</li>
+      </ul>
+
+      <h2>Technology</h2>
+      <p class="section-text">JSONCraft is built with Astro, a modern static site generator optimized for performance. The JSON processing uses the browser's native JSON.parse() and JSON.stringify() APIs, ensuring accurate and standards-compliant results.</p>
+
+      <h2>Contact</h2>
+      <p class="section-text">Have questions, feedback, or suggestions? Visit the <a href="/contact">Contact page</a> to get in touch.</p>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

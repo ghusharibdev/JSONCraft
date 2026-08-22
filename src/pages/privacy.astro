@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/tool-metadata';
+---
+<BaseLayout title="Privacy Policy — JSONCraft" description="JSONCraft privacy policy. Learn how we handle your data and why your JSON never leaves your browser." canonical={SITE.url + '/privacy'}>
+  <Header />
+  <main>
+    <div class="container content-section privacy-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">Privacy Policy</span>
+      </nav>
+      <h1>Privacy Policy</h1>
+      <p class="section-text"><em>Last updated: January 2025</em></p>
+
+      <h2>Data Processing</h2>
+      <p class="section-text">JSONCraft processes all JSON data entirely within your web browser. Your data is never transmitted to our servers or any third-party servers. All processing happens locally on your device using native browser APIs.</p>
+
+      <h2>Data Storage</h2>
+      <p class="section-text">We do not store, collect, or retain any JSON data that you process using our tools. When you close your browser tab, all data is gone. We have no database of user content.</p>
+
+      <h2>Theme Preference</h2>
+      <p class="section-text">We store your theme preference (light/dark/system) in your browser's localStorage. This data never leaves your device and is used solely to remember your display preference.</p>
+
+      <h2>Analytics</h2>
+      <p class="section-text">We may use basic, privacy-respecting analytics to understand overall site usage patterns (e.g., which pages are visited). This analytics data does not include any JSON content you process.</p>
+
+      <h2>Cookies</h2>
+      <p class="section-text">JSONCraft does not use tracking cookies. The only local storage used is for your theme preference.</p>
+
+      <h2>Third-Party Services</h2>
+      <p class="section-text">We do not send your data to third-party services. No external APIs are called with your JSON content.</p>
+
+      <h2>Changes to This Policy</h2>
+      <p class="section-text">We may update this privacy policy from time to time. Changes will be posted on this page with an updated date.</p>
+
+      <h2>Contact</h2>
+      <p class="section-text">If you have questions about this privacy policy, please visit our <a href="/contact">Contact page</a>.</p>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

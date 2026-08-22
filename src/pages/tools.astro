@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { tools, SITE } from '../lib/tool-metadata';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'All Tools', item: SITE.url + '/tools' },
+    ],
+  },
+];
+---
+<BaseLayout title="All JSON Tools — Formatter, Validator, Minifier, Beautifier | JSONCraft" description="Browse all free JSON tools: format, validate, minify, and beautify JSON data. Private, fast, browser-based." canonical={SITE.url + '/tools'} jsonLd={jsonLd}>
+  <Header />
+  <main>
+    <div class="container">
+      <div class="page-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <span class="cur" aria-current="page">All Tools</span>
+        </nav>
+        <h1>All JSON Tools</h1>
+        <p>Everything you need to work with JSON. All tools are free, private, and run entirely in your browser.</p>
+      </div>
+
+      <div class="tools-grid">
+        {tools.map(tool => (
+          <a href={'/' + tool.slug} class="tool-card">
+            <div class="card-icon">{tool.icon}</div>
+            <h3>{tool.name}</h3>
+            <p>{tool.description}</p>
+          </a>
+        ))}
+      </div>
+
+      <section class="content-section">
+        <h2>Why JSONCraft?</h2>
+        <p>JSONCraft provides a complete set of JSON utilities designed for developers who need fast, reliable, and private tools. Whether you are formatting API responses, validating configuration files, or compressing JSON for production, these tools handle it all without sending your data anywhere.</p>
+        <ul>
+          <li><strong>100% Client-Side</strong> — All processing happens in your browser. Your data never leaves your device.</li>
+          <li><strong>Zero Cost</strong> — No accounts, no subscriptions, no hidden fees.</li>
+          <li><strong>Fast</strong> — Native JavaScript JSON.parse() and JSON.stringify() for instant results.</li>
+          <li><strong>Private</strong> — No analytics tracking your JSON content. No server uploads.</li>
+          <li><strong>Works Everywhere</strong> — Modern browsers on desktop, tablet, and mobile.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
