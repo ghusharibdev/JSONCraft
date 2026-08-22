@@ -5,25 +5,21 @@ import Footer from '../../components/Footer.astro';
 import { SITE } from '../../lib/tool-metadata';
 
 const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: 'How to Format JSON: A Complete Guide',
-    author: { '@type': 'Organization', name: 'JSONCraft' },
-    publisher: { '@type': 'Organization', name: 'JSONCraft' },
-    datePublished: '2025-01-01',
-    dateModified: '2025-01-01',
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
-      { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE.url + '/guides' },
-      { '@type': 'ListItem', position: 3, name: 'How to Format JSON', item: SITE.url + '/guides/how-to-format-json' },
-    ],
-  },
+  { '@context': 'https://schema.org', '@type': 'Article', headline: 'How to Format JSON: A Complete Guide', author: { '@type': 'Organization', name: 'JSONCraft' }, publisher: { '@type': 'Organization', name: 'JSONCraft' }, datePublished: '2025-01-01', dateModified: '2025-01-01' },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE.url + '/guides' },
+    { '@type': 'ListItem', position: 3, name: 'How to Format JSON', item: SITE.url + '/guides/how-to-format-json' },
+  ]},
 ];
+
+const exUnformatted = '{"users":[{"id":1,"name":"Alice","email":"alice@example.com","roles":["admin","editor"]},{"id":2,"name":"Bob","email":"bob@example.com","roles":["viewer"]}]}';
+const exFormatted = '{\n  "users": [\n    {\n      "id": 1,\n      "name": "Alice",\n      "email": "alice@example.com",\n      "roles": ["admin", "editor"]\n    },\n    {\n      "id": 2,\n      "name": "Bob",\n      "email": "bob@example.com",\n      "roles": ["viewer"]\n    }\n  ]\n}';
+const exTwoSpace = '{\n  "name": "JSONCraft",\n  "version": "1.0"\n}';
+const exFourSpace = '{\n    "name": "JSONCraft",\n    "version": "1.0"\n}';
+const exJsCode = 'JSON.stringify(data, null, 2);';
+const exPyCode = 'import json\nprint(json.dumps(data, indent=2))';
+const exBashCode = "cat data.json | jq '.'";
 ---
 <BaseLayout title="How to Format JSON: A Complete Guide | JSONCraft" description="Learn the best ways to format JSON data for readability, debugging, and production use. Step-by-step guide with examples." canonical={SITE.url + '/guides/how-to-format-json'} jsonLd={jsonLd}>
   <Header />
@@ -42,9 +38,9 @@ const jsonLd = [
 
       <h2>Why Format JSON?</h2>
       <p class="section-text">Unformatted JSON is functionally correct but painful to work with. Consider this API response:</p>
-      <pre><code set:html='{&quot;users&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;email&quot;:&quot;alice@example.com&quot;,&quot;roles&quot;:[&quot;admin&quot;,&quot;editor&quot;]},{&quot;id&quot;:2,&quot;name&quot;:&quot;Bob&quot;,&quot;email&quot;:&quot;bob@example.com&quot;,&quot;roles&quot;:[&quot;viewer&quot;]}]}' /></pre>
+      <pre><code set:html={exUnformatted} /></pre>
       <p class="section-text">Now compare it with formatted JSON:</p>
-      <pre><code set:html='{&#10;  &quot;users&quot;: [&#10;    {&#10;      &quot;id&quot;: 1,&#10;      &quot;name&quot;: &quot;Alice&quot;,&#10;      &quot;email&quot;: &quot;alice@example.com&quot;,&#10;      &quot;roles&quot;: [&quot;admin&quot;, &quot;editor&quot;]&#10;    },&#10;    {&#10;      &quot;id&quot;: 2,&#10;      &quot;name&quot;: &quot;Bob&quot;,&#10;      &quot;email&quot;: &quot;bob@example.com&quot;,&#10;      &quot;roles&quot;: [&quot;viewer&quot;]&#10;    }&#10;  ]&#10;}' /></pre>
+      <pre><code set:html={exFormatted} /></pre>
       <p class="section-text">The second version reveals the structure immediately: an object containing a users array, each with an id, name, email, and roles array.</p>
 
       <h2>When to Format JSON</h2>
@@ -59,11 +55,11 @@ const jsonLd = [
       <h2>Indentation Styles</h2>
       <h3>2 Spaces (Recommended)</h3>
       <p class="section-text">The most popular choice. Used by Prettier, ESLint, and many major projects. Balances readability with compactness.</p>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;JSONCraft&quot;,&#10;  &quot;version&quot;: &quot;1.0&quot;&#10;}' /></pre>
+      <pre><code set:html={exTwoSpace} /></pre>
 
       <h3>4 Spaces</h3>
       <p class="section-text">Provides more visual separation between levels. Common in languages with deeper nesting.</p>
-      <pre><code set:html='{&#10;    &quot;name&quot;: &quot;JSONCraft&quot;,&#10;    &quot;version&quot;: &quot;1.0&quot;&#10;}' /></pre>
+      <pre><code set:html={exFourSpace} /></pre>
 
       <h3>Tab Indentation</h3>
       <p class="section-text">Uses tab characters instead of spaces. Less common for JSON but useful when your team or project requires it.</p>

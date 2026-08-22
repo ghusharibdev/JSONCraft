@@ -5,25 +5,32 @@ import Footer from '../../components/Footer.astro';
 import { SITE } from '../../lib/tool-metadata';
 
 const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: 'Common JSON Errors and How to Fix Them',
-    author: { '@type': 'Organization', name: 'JSONCraft' },
-    publisher: { '@type': 'Organization', name: 'JSONCraft' },
-    datePublished: '2025-01-01',
-    dateModified: '2025-01-01',
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
-      { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE.url + '/guides' },
-      { '@type': 'ListItem', position: 3, name: 'Common JSON Errors', item: SITE.url + '/guides/common-json-errors' },
-    ],
-  },
+  { '@context': 'https://schema.org', '@type': 'Article', headline: 'Common JSON Errors and How to Fix Them', author: { '@type': 'Organization', name: 'JSONCraft' }, publisher: { '@type': 'Organization', name: 'JSONCraft' }, datePublished: '2025-01-01', dateModified: '2025-01-01' },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE.url + '/guides' },
+    { '@type': 'ListItem', position: 3, name: 'Common JSON Errors', item: SITE.url + '/guides/common-json-errors' },
+  ]},
 ];
+
+const ex1w = '{\n  "name": "Alice",\n  "age": 30,\n}';
+const ex1r = '{\n  "name": "Alice",\n  "age": 30\n}';
+const ex2w = '{\n  "name": "Alice", // comment\n  "age": 30\n}';
+const ex2r = '{\n  "name": "Alice",\n  "age": 30\n}';
+const ex3w = "{\n  'name': 'Alice'\n}";
+const ex3r = '{\n  "name": "Alice"\n}';
+const ex4w = '{\n  "name": "Alice"\n  "age": 30\n}';
+const ex4r = '{\n  "name": "Alice",\n  "age": 30\n}';
+const ex5w = '{\n  name: "Alice"\n}';
+const ex5r = '{\n  "name": "Alice"\n}';
+const ex6w = '{\n  "name": "Alice",\n  "nickname": undefined\n}';
+const ex6r = '{\n  "name": "Alice",\n  "nickname": null\n}';
+const ex7w = '{\n  "code": 007\n}';
+const ex7r = '{\n  "code": 7\n}';
+const ex8w = '{"path": "C:\\Users\\Alice"}';
+const ex8r = '{"path": "C:\\\\Users\\\\Alice"}';
+const ex9w = '{\n  "created": new Date(),\n  "regex": /pattern/\n}';
+const ex9r = '{\n  "created": "2025-01-15T10:30:00Z",\n  "regex": "pattern"\n}';
 ---
 <BaseLayout title="Common JSON Errors and How to Fix Them | JSONCraft" description="Identify and resolve the most frequent JSON syntax errors developers encounter. Practical fixes with examples." canonical={SITE.url + '/guides/common-json-errors'} jsonLd={jsonLd}>
   <Header />
@@ -43,65 +50,65 @@ const jsonLd = [
       <h2>1. Trailing Comma</h2>
       <p class="section-text">The most common JSON error. Unlike JavaScript object literals, JSON forbids trailing commas after the last element.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;age&quot;: 30,&#10;}' /></pre>
+      <pre><code set:html={ex1w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;age&quot;: 30&#10;}' /></pre>
+      <pre><code set:html={ex1r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Remove the comma after the last property.</p>
 
       <h2>2. Comments in JSON</h2>
       <p class="section-text">JSON does not support comments of any kind. No //, no /* */, no #.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;, // This is a comment&#10;  &quot;age&quot;: 30&#10;}' /></pre>
+      <pre><code set:html={ex2w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;age&quot;: 30&#10;}' /></pre>
+      <pre><code set:html={ex2r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Remove all comments. Use a separate documentation file or a "_comment" key if needed.</p>
 
       <h2>3. Single Quotes</h2>
       <p class="section-text">JSON strings must use double quotes. Single quotes cause a parse error.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  \'name\': \'Alice\'&#10;}' /></pre>
+      <pre><code set:html={ex3w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;&#10;}' /></pre>
+      <pre><code set:html={ex3r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Replace all single quotes with double quotes.</p>
 
       <h2>4. Missing Commas Between Properties</h2>
       <p class="section-text">Every property in an object (except the last) must be separated by a comma.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;&#10;  &quot;age&quot;: 30&#10;}' /></pre>
+      <pre><code set:html={ex4w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;age&quot;: 30&#10;}' /></pre>
+      <pre><code set:html={ex4r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Add commas between properties.</p>
 
       <h2>5. Unquoted Keys</h2>
       <p class="section-text">Object property names must be double-quoted strings in JSON.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  name: &quot;Alice&quot;&#10;}' /></pre>
+      <pre><code set:html={ex5w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;&#10;}' /></pre>
+      <pre><code set:html={ex5r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Wrap all keys in double quotes.</p>
 
       <h2>6. Undefined Values</h2>
       <p class="section-text">JavaScript undefined is not a valid JSON value. Use null instead.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;nickname&quot;: undefined&#10;}' /></pre>
+      <pre><code set:html={ex6w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;nickname&quot;: null&#10;}' /></pre>
+      <pre><code set:html={ex6r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Replace undefined with null.</p>
 
       <h2>7. Numbers with Leading Zeros</h2>
       <p class="section-text">Numbers cannot have leading zeros (except for 0 itself and 0.x decimal values).</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  &quot;code&quot;: 007&#10;}' /></pre>
+      <pre><code set:html={ex7w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;code&quot;: 7&#10;}' /></pre>
+      <pre><code set:html={ex7r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Remove leading zeros from numbers.</p>
 
       <h2>8. Unescaped Characters in Strings</h2>
       <p class="section-text">Certain characters must be escaped in JSON strings: double quotes, backslashes, and control characters.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&quot;path&quot;: &quot;C:\\Users\\Alice&quot;}' /></pre>
+      <pre><code set:html={ex8w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&quot;path&quot;: &quot;C:\\\\Users\\\\Alice&quot;}' /></pre>
+      <pre><code set:html={ex8r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Escape special characters with a backslash.</p>
 
       <h2>9. BOM (Byte Order Mark)</h2>
@@ -111,9 +118,9 @@ const jsonLd = [
       <h2>10. Using the Wrong Data Type</h2>
       <p class="section-text">JSON has specific types: string, number, boolean, null, array, and object. Using other JavaScript types causes errors.</p>
       <h3>Wrong</h3>
-      <pre><code set:html='{&#10;  &quot;created&quot;: new Date(),&#10;  &quot;regex&quot;: /pattern/&#10;}' /></pre>
+      <pre><code set:html={ex9w} /></pre>
       <h3>Correct</h3>
-      <pre><code set:html='{&#10;  &quot;created&quot;: &quot;2025-01-15T10:30:00Z&quot;,&#10;  &quot;regex&quot;: &quot;pattern&quot;&#10;}' /></pre>
+      <pre><code set:html={ex9r} /></pre>
       <p class="section-text"><strong>Fix:</strong> Convert non-JSON types to strings or numbers before serializing.</p>
 
       <h2>How to Catch These Errors</h2>

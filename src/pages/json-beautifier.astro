@@ -33,6 +33,9 @@ const jsonLd = [
     ],
   },
 ];
+
+const minified = '{"user":{"name":"Alice","roles":["admin","editor"],"settings":{"theme":"dark","notifications":true}}}';
+const beautified = JSON.stringify(JSON.parse(minified), null, 2);
 ---
 <ToolLayout tool={tool} jsonLd={jsonLd}>
   <div class="privacy-note">

@@ -13,6 +13,10 @@ const faqItems = [
   { question: 'Is my data private?', answer: 'Yes. All validation happens in your browser. Your JSON data is never sent to any server.' },
 ];
 
+const exValid = '{"name": "Alice", "age": 30, "active": true}';
+const exMissing = '{"name": "Alice" "age": 30}';
+const exTrailing = '{"name": "Alice", "age": 30,}';
+
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -79,15 +83,15 @@ const jsonLd = [
   <section class="examples-section">
     <h2 class="section-title">Common Validation Results</h2>
     <h3>Valid JSON</h3>
-    <pre><code set:html='{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30, &quot;active&quot;: true}' /></pre>
+    <pre><code set:html={exValid} /></pre>
     <p class="section-text">Returns: Valid JSON</p>
 
     <h3>Missing Comma</h3>
-    <pre><code set:html='{&quot;name&quot;: &quot;Alice&quot; &quot;age&quot;: 30}' /></pre>
+    <pre><code set:html={exMissing} /></pre>
     <p class="section-text">Returns: Syntax error pointing to the missing comma.</p>
 
     <h3>Trailing Comma</h3>
-    <pre><code set:html='{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30,}' /></pre>
+    <pre><code set:html={exTrailing} /></pre>
     <p class="section-text">Returns: Unexpected token error at the trailing comma.</p>
   </section>
 

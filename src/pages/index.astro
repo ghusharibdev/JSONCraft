@@ -16,6 +16,10 @@ const faqItems = [
   { question: 'Can I use keyboard shortcuts?', answer: 'Yes. Press Ctrl+Enter (or Cmd+Enter on Mac) to format the JSON in the editor. All buttons are also keyboard accessible.' },
 ];
 
+const exSimple = '{"name":"Alice","age":30,"active":true}';
+const exNested = '{"user":{"id":1,"profile":{"name":"Bob","tags":["admin","editor"]}}}';
+const exArray = '[{"id":1,"value":"a"},{"id":2,"value":"b"}]';
+
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -109,15 +113,15 @@ const jsonLd = [
       <section class="examples-section">
         <h2 class="section-title">Examples</h2>
         <h3>Simple Object</h3>
-        <pre><code set:html='{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30,&quot;active&quot;:true}' /></pre>
+        <pre><code set:html={exSimple} /></pre>
         <p class="section-text">Formats to a clean, indented structure with each property on its own line.</p>
 
         <h3>Nested JSON</h3>
-        <pre><code set:html='{&quot;user&quot;:{&quot;id&quot;:1,&quot;profile&quot;:{&quot;name&quot;:&quot;Bob&quot;,&quot;tags&quot;:[&quot;admin&quot;,&quot;editor&quot;]}}}' /></pre>
+        <pre><code set:html={exNested} /></pre>
         <p class="section-text">Deeply nested objects are properly indented at each level for readability.</p>
 
         <h3>Arrays</h3>
-        <pre><code set:html='[{&quot;id&quot;:1,&quot;value&quot;:&quot;a&quot;},{&quot;id&quot;:2,&quot;value&quot;:&quot;b&quot;}]' /></pre>
+        <pre><code set:html={exArray} /></pre>
         <p class="section-text">Array elements are formatted with proper indentation, making data structures clear.</p>
       </section>
 
