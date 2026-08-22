@@ -8,6 +8,7 @@ import '../styles/theme-toggle.css';
 import '../styles/tools.css';
 import '../styles/pages.css';
 import '../styles/dark.css';
+import { SITE } from '../lib/tool-metadata';
 
 export interface Props {
   title: string;
@@ -17,7 +18,7 @@ export interface Props {
   jsonLd?: Record<string, unknown>[];
 }
 
-const { title, description = 'Format, validate, minify, and beautify JSON instantly in your browser. Fast, free, private.', canonical = 'https://jsoncraft.dev', ogImage = 'https://jsoncraft.dev/og.png', jsonLd } = Astro.props;
+const { title, description = 'Format, validate, minify, and beautify JSON instantly in your browser. Fast, free, private.', canonical = Astro.site?.href || SITE.url, ogImage = (Astro.site?.href || SITE.url) + 'og.png', jsonLd } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
