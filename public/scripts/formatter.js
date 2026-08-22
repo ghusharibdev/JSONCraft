@@ -21,7 +21,7 @@
 
   function getIndent(){
     var v=indentSel.value;
-    return v==='tab'?'\t':v;
+    return v==='tab'?'\t':parseInt(v,10);
   }
 
   function format(){
