@@ -1,3 +1,9 @@
+/assets/*.css
+  Content-Type: text/css
+
+/assets/*.js
+  Content-Type: application/javascript
+
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
