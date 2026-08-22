@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { ToolMeta } from '../lib/tool-metadata';
+import { SITE } from '../lib/tool-metadata';
+
+export interface Props {
+  tool: ToolMeta;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { tool, jsonLd } = Astro.props;
+const canonical = `${SITE.url}/${tool.slug}`;
+---
+<BaseLayout title={tool.seoTitle} description={tool.seoDescription} canonical={canonical} jsonLd={jsonLd}>
+  <Header />
+  <main>
+    <div class="container tool-layout">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="/tools">Tools</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">{tool.name}</span>
+      </nav>
+      <h1>{tool.name}</h1>
+      <p class="tool-description">{tool.longDescription}</p>
+      <slot />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
