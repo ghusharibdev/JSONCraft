@@ -8,12 +8,16 @@ import AdPlaceholder from '../components/AdPlaceholder.astro';
 import { SITE } from '../lib/tool-metadata';
 
 const faqItems = [
-  { question: 'Is my JSON data uploaded to a server?', answer: 'No. All JSON processing happens entirely in your browser using native JavaScript. Your data never leaves your device.' },
-  { question: 'What is the difference between Format and Beautify?', answer: 'Both produce the same output. The JSON Formatter is the primary tool that supports formatting, validation, minification, and beautification all in one place.' },
-  { question: 'What indentation options are available?', answer: 'You can choose between 2 spaces (default), 4 spaces, or tab indentation. 2 spaces is the most common format used by tools like Prettier.' },
-  { question: 'Is there a file size limit?', answer: 'There is no enforced limit. However, extremely large JSON files (hundreds of MB) may slow your browser due to memory constraints. For most use cases, the tool handles JSON without issues.' },
-  { question: 'Does this work on mobile?', answer: 'Yes. The tool is fully responsive and works on all modern mobile browsers. The layout adapts to show input and output stacked vertically on smaller screens.' },
-  { question: 'Can I use keyboard shortcuts?', answer: 'Yes. Press Ctrl+Enter (or Cmd+Enter on Mac) to format the JSON in the editor. All buttons are also keyboard accessible.' },
+  { question: 'Is my JSON data uploaded to a server?', answer: 'No. All JSON processing happens entirely in your browser using native JavaScript. Your data never leaves your device — there are no server calls, no analytics tracking your content, and no storage of your JSON data.' },
+  { question: 'What is the difference between Format and Beautify?', answer: 'Format and Beautify both produce identical output. The tool supports formatting (pretty-printing), validation (checking syntax), minification (removing whitespace), and beautification — all accessible from the same interface. Simply paste your JSON and choose the operation you need.' },
+  { question: 'What indentation options are available?', answer: 'You can choose between 2 spaces (default), 4 spaces, or tab indentation. 2 spaces is the most common format used by tools like Prettier and is recommended for most use cases. 4 spaces provides more visual separation for deeply nested structures.' },
+  { question: 'Is there a file size limit?', answer: 'There is no enforced limit. However, extremely large JSON files (hundreds of MB) may slow your browser due to memory constraints. For most use cases — API responses, config files, data exports — the tool handles JSON without issues. Files up to 50MB typically format in under a second.' },
+  { question: 'Does this work on mobile?', answer: 'Yes. The tool is fully responsive and works on all modern mobile browsers. On smaller screens, the input and output editors stack vertically. You can paste JSON directly or type it in, and use the Format button to process it.' },
+  { question: 'Can I use keyboard shortcuts?', answer: 'Yes. Press Ctrl+Enter (or Cmd+Enter on Mac) to format the JSON in the editor. This works from the input textarea and applies your selected indentation style. All buttons are also fully keyboard accessible via Tab navigation.' },
+  { question: 'What JSON errors can the validator detect?', answer: 'The validator uses the browser\'s native JSON.parse() which catches: missing commas, unmatched brackets or braces, trailing commas, single-quoted strings, unquoted keys, comments in JSON, invalid escape sequences, and numeric formatting errors. Each error includes a message explaining what went wrong.' },
+  { question: 'Can I download the formatted output?', answer: 'Yes. Click the "Download .json" button to save the formatted output as a .json file. The file is generated locally in your browser and downloaded directly — no server is involved. You can also copy the output to your clipboard with the "Copy" button.' },
+  { question: 'Does formatting change the JSON data?', answer: 'No. Formatting only changes whitespace and indentation. The actual data values, key names, and structure remain identical. Minification similarly only removes whitespace — no data is lost or altered in any way.' },
+  { question: 'Is this tool free to use?', answer: 'Yes, JSONCraft is completely free with no usage limits, no sign-up required, and no ads. It is an open utility built for developers. You can use it as much as you need without any restrictions.' },
 ];
 
 const exSimple = '{"name":"Alice","age":30,"active":true}';
@@ -55,9 +59,7 @@ const jsonLd = [
 
       <div class="privacy-note">
         <span class="icon">&#128274;</span>
-        <div>
-          <strong>100% Private.</strong> Your JSON is processed entirely in your browser. No data is ever sent to any server.
-        </div>
+        <span>All processing happens in your browser. Your data never leaves your device.</span>
       </div>
 
       <div class="tool-grid">

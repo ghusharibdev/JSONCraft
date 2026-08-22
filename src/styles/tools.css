@@ -58,9 +58,9 @@
 .status-bar.error{background:var(--color-error-bg);color:var(--color-error);border:1px solid var(--color-error-border)}
 .status-bar.hidden{display:none}
 .privacy-note{
-  display:flex;align-items:flex-start;gap:var(--space-3);
-  padding:var(--space-4);background:var(--color-primary-light);
-  border:1px solid rgba(40,100,240,0.15);border-radius:var(--radius-md);
-  margin-bottom:var(--space-8);font-size:var(--font-size-sm);color:var(--color-text-secondary);
+  display:flex;align-items:center;gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);background:transparent;
+  border:none;border-radius:var(--radius-sm);
+  margin-bottom:var(--space-4);font-size:var(--font-size-xs);color:var(--color-text-muted);
 }
-.privacy-note .icon{font-size:var(--font-size-lg);flex-shrink:0;margin-top:1px}
+.privacy-note .icon{font-size:var(--font-size-sm);flex-shrink:0}
