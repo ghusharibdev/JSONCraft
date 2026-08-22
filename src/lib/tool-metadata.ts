@@ -38,7 +38,7 @@ export const tools: ToolMeta[] = [
     seoDescription: 'Validate JSON syntax online. Detect errors, broken brackets, missing commas, and more. Free browser-based tool — your data never leaves your device.',
     keywords: ['json validator', 'validate json', 'json syntax checker', 'json lint'],
     icon: '✓',
-    relatedTools: ['json-formatter', 'json-minifier', 'json-beautifier'],
+    relatedTools: ['json-beautifier', 'json-minifier', 'json-formatter'],
   },
   {
     name: 'JSON Minifier',
@@ -49,7 +49,7 @@ export const tools: ToolMeta[] = [
     seoDescription: 'Minify JSON online. Remove whitespace and reduce JSON file size instantly. Free, private, browser-based — no server uploads.',
     keywords: ['json minifier', 'minify json', 'compress json', 'json shrink'],
     icon: '−',
-    relatedTools: ['json-formatter', 'json-validator', 'json-beautifier'],
+    relatedTools: ['json-beautifier', 'json-validator', 'json-formatter'],
   },
   {
     name: 'JSON Beautifier',
