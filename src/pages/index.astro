@@ -130,11 +130,11 @@ const jsonLd = [
       <section class="limitations-section">
         <h2 class="section-title">Limitations</h2>
         <ul>
-          <li>JSON must be syntactically valid. The tool uses the browser's native <code>JSON.parse()</code> which follows the JSON specification strictly.</li>
-          <li>Comments are not valid JSON and will be rejected.</li>
-          <li>Trailing commas are not valid JSON syntax.</li>
-          <li>Single-quoted strings are not valid JSON (must use double quotes).</li>
-          <li>Extremely large files may slow your browser due to memory limits.</li>
+          <li><strong>Valid JSON only</strong> — The tool requires syntactically valid JSON. Use the <a href="/json-validator">JSON Validator</a> to check your data first.</li>
+          <li><strong>No comments allowed</strong> — JSON does not support comments. Remove any <code>//</code> or <code>/* */</code> before formatting.</li>
+          <li><strong>No trailing commas</strong> — Trailing commas after the last property or array element are invalid JSON syntax.</li>
+          <li><strong>Double quotes required</strong> — JSON keys and string values must use double quotes (<code>"</code>), not single quotes (<code>'</code>).</li>
+          <li><strong>Large file warning</strong> — Files over 50MB may cause browser slowdowns due to memory constraints.</li>
         </ul>
       </section>
 

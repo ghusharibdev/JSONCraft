@@ -102,9 +102,10 @@ const beautified = JSON.stringify(JSON.parse(minified), null, 2);
   <section class="limitations-section">
     <h2 class="section-title">Limitations</h2>
     <ul>
-      <li>Invalid JSON cannot be beautified. Use the <a href="/json-validator">JSON Validator</a> first.</li>
-      <li>Beautification only affects whitespace, not the data itself.</li>
-      <li>Extremely large files may slow your browser.</li>
+      <li><strong>Valid JSON only</strong> — Invalid JSON cannot be beautified. Use the <a href="/json-validator">JSON Validator</a> to check syntax first.</li>
+      <li><strong>Whitespace only</strong> — Beautification affects indentation and spacing, not the actual data values.</li>
+      <li><strong>No syntax highlighting</strong> — Output is plain text. For syntax highlighting, copy to your code editor.</li>
+      <li><strong>Large file warning</strong> — Files over 50MB may slow your browser during processing.</li>
     </ul>
   </section>
 

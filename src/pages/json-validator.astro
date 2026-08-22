@@ -98,9 +98,10 @@ const jsonLd = [
   <section class="limitations-section">
     <h2 class="section-title">Limitations</h2>
     <ul>
-      <li>Validates syntax only, not semantic structure or JSON Schema compliance.</li>
-      <li>Does not validate JSON data types beyond what the JSON spec defines.</li>
-      <li>Extremely large files may slow your browser.</li>
+      <li><strong>Syntax validation only</strong> — Checks for valid JSON structure, not semantic correctness or data types.</li>
+      <li><strong>No JSON Schema support</strong> — Cannot validate against a schema. Use a dedicated schema validator for that.</li>
+      <li><strong>No file upload</strong> — Paste JSON directly. For large files, use the <a href="/json-minifier">JSON Minifier</a> first to reduce size.</li>
+      <li><strong>Large file warning</strong> — Files over 50MB may slow your browser during validation.</li>
     </ul>
   </section>
 

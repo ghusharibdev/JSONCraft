@@ -82,9 +82,10 @@ const afterJson = JSON.stringify({name:"JSONCraft",version:"1.0",tools:["formatt
   <section class="limitations-section">
     <h2 class="section-title">Limitations</h2>
     <ul>
-      <li>Invalid JSON cannot be minified. Fix syntax errors first.</li>
-      <li>Minification does not apply gzip or other compression algorithms.</li>
-      <li>For network transfer, also use gzip/brotli on top of minification.</li>
+      <li><strong>Valid JSON only</strong> — Invalid JSON cannot be minified. Fix syntax errors first using the <a href="/json-validator">JSON Validator</a>.</li>
+      <li><strong>Whitespace removal only</strong> — Minification strips spaces and line breaks. For further compression, use gzip or brotli.</li>
+      <li><strong>No data transformation</strong> — Keys and values remain unchanged. Only formatting is removed.</li>
+      <li><strong>Large file warning</strong> — Files over 50MB may slow your browser during processing.</li>
     </ul>
   </section>
 
