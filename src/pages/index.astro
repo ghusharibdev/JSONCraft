@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FAQ from '../components/FAQ.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+import AdPlaceholder from '../components/AdPlaceholder.astro';
+import { SITE } from '../lib/tool-metadata';
+
+const faqItems = [
+  { question: 'Is my JSON data uploaded to a server?', answer: 'No. All JSON processing happens entirely in your browser using native JavaScript. Your data never leaves your device.' },
+  { question: 'What is the difference between Format and Beautify?', answer: 'Both produce the same output. The JSON Formatter is the primary tool that supports formatting, validation, minification, and beautification all in one place.' },
+  { question: 'What indentation options are available?', answer: 'You can choose between 2 spaces (default), 4 spaces, or tab indentation. 2 spaces is the most common format used by tools like Prettier.' },
+  { question: 'Is there a file size limit?', answer: 'There is no enforced limit. However, extremely large JSON files (hundreds of MB) may slow your browser due to memory constraints. For most use cases, the tool handles JSON without issues.' },
+  { question: 'Does this work on mobile?', answer: 'Yes. The tool is fully responsive and works on all modern mobile browsers. The layout adapts to show input and output stacked vertically on smaller screens.' },
+  { question: 'Can I use keyboard shortcuts?', answer: 'Yes. Press Ctrl+Enter (or Cmd+Enter on Mac) to format the JSON in the editor. All buttons are also keyboard accessible.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'JSONCraft - JSON Formatter',
+    url: SITE.url + '/json-formatter',
+    description: 'Format, pretty-print, and organize JSON data instantly in your browser.',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'JSON Formatter', item: SITE.url + '/json-formatter' },
+    ],
+  },
+];
+---
+<BaseLayout title="JSON Formatter Online — Free Pretty Print Tool | JSONCraft" description="Format JSON online for free. Pretty-print, indent, and organize JSON data instantly in your browser. No data uploaded. Fast, private, and accurate." canonical={SITE.url + '/json-formatter'} jsonLd={jsonLd}>
+  <Header />
+  <main>
+    <div class="container tool-layout">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">JSON Formatter</span>
+      </nav>
+      <h1>JSON Formatter</h1>
+      <p class="tool-description">Format, pretty-print, and organize JSON data instantly. Choose your indentation style and copy or download the result.</p>
+
+      <div class="privacy-note">
+        <span class="icon">&#128274;</span>
+        <div>
+          <strong>100% Private.</strong> Your JSON is processed entirely in your browser. No data is ever sent to any server.
+        </div>
+      </div>
+
+      <div class="tool-grid">
+        <div class="editor-panel">
+          <div class="panel-header">
+            <span class="panel-label">Input</span>
+            <div class="panel-stats">
+              <span class="stat" id="fmt-char-count">0 chars</span>
+              <span class="stat" id="fmt-line-count">0 lines</span>
+            </div>
+          </div>
+          <textarea id="fmt-input" class="json-textarea" placeholder='Paste your JSON here' spellcheck="false" aria-label="JSON input"></textarea>
+        </div>
+        <div class="result-panel">
+          <div class="panel-header">
+            <span class="panel-label">Output</span>
+          </div>
+          <div id="fmt-status" class="status-bar hidden" role="status" aria-live="polite"></div>
+          <pre id="fmt-output" class="result-output empty" role="region" aria-label="Formatted output" tabindex="0">Formatted JSON will appear here...</pre>
+        </div>
+      </div>
+
+      <div class="tool-actions">
+        <div class="indent-selector">
+          <label for="fmt-indent">Indent:</label>
+          <select id="fmt-indent">
+            <option value="2" selected>2 spaces</option>
+            <option value="4">4 spaces</option>
+            <option value="tab">Tabs</option>
+          </select>
+        </div>
+        <button id="fmt-format" class="btn btn-primary" type="button">Format</button>
+        <button id="fmt-validate" class="btn btn-secondary" type="button">Validate</button>
+        <button id="fmt-minify" class="btn btn-secondary" type="button">Minify</button>
+        <button id="fmt-clear" class="btn btn-ghost" type="button">Clear</button>
+        <button id="fmt-copy" class="btn btn-secondary" type="button">Copy</button>
+        <button id="fmt-download" class="btn btn-secondary" type="button">Download .json</button>
+        <span class="keyboard-hint">Ctrl/Cmd + Enter to format</span>
+      </div>
+
+      <AdPlaceholder />
+
+      <section class="how-to-use">
+        <h2 class="section-title">How to Use the JSON Formatter</h2>
+        <ol>
+          <li><strong>Paste your JSON</strong> into the input editor, or type it directly.</li>
+          <li><strong>Select your preferred indentation</strong> style: 2 spaces, 4 spaces, or tabs.</li>
+          <li>Click <strong>Format</strong> or press <code>Ctrl+Enter</code> to pretty-print the JSON.</li>
+          <li><strong>Copy</strong> the formatted output to your clipboard or <strong>download</strong> it as a <code>.json</code> file.</li>
+        </ol>
+      </section>
+
+      <section class="examples-section">
+        <h2 class="section-title">Examples</h2>
+        <h3>Simple Object</h3>
+        <pre><code set:html='{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30,&quot;active&quot;:true}' /></pre>
+        <p class="section-text">Formats to a clean, indented structure with each property on its own line.</p>
+
+        <h3>Nested JSON</h3>
+        <pre><code set:html='{&quot;user&quot;:{&quot;id&quot;:1,&quot;profile&quot;:{&quot;name&quot;:&quot;Bob&quot;,&quot;tags&quot;:[&quot;admin&quot;,&quot;editor&quot;]}}}' /></pre>
+        <p class="section-text">Deeply nested objects are properly indented at each level for readability.</p>
+
+        <h3>Arrays</h3>
+        <pre><code set:html='[{&quot;id&quot;:1,&quot;value&quot;:&quot;a&quot;},{&quot;id&quot;:2,&quot;value&quot;:&quot;b&quot;}]' /></pre>
+        <p class="section-text">Array elements are formatted with proper indentation, making data structures clear.</p>
+      </section>
+
+      <section class="limitations-section">
+        <h2 class="section-title">Limitations</h2>
+        <ul>
+          <li>JSON must be syntactically valid. The tool uses the browser's native <code>JSON.parse()</code> which follows the JSON specification strictly.</li>
+          <li>Comments are not valid JSON and will be rejected.</li>
+          <li>Trailing commas are not valid JSON syntax.</li>
+          <li>Single-quoted strings are not valid JSON (must use double quotes).</li>
+          <li>Extremely large files may slow your browser due to memory limits.</li>
+        </ul>
+      </section>
+
+      <FAQ items={faqItems} />
+      <RelatedTools currentSlug="json-formatter" />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script is:inline src="/scripts/formatter.js"></script>
