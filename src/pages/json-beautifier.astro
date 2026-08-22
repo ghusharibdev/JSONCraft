@@ -3,6 +3,7 @@ import ToolLayout from '../layouts/ToolLayout.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedTools from '../components/RelatedTools.astro';
 import AdPlaceholder from '../components/AdPlaceholder.astro';
+import BannerAd from '../components/BannerAd.astro';
 import { getToolBySlug, SITE } from '../lib/tool-metadata';
 
 const tool = getToolBySlug('json-beautifier')!;
@@ -111,6 +112,7 @@ const beautified = JSON.stringify(JSON.parse(minified), null, 2);
 
   <FAQ items={faqItems} />
   <RelatedTools currentSlug="json-beautifier" />
+  <BannerAd />
 </ToolLayout>
 
 <script is:inline src="/scripts/beautifier.js"></script>

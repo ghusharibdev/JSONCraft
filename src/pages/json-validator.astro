@@ -3,6 +3,7 @@ import ToolLayout from '../layouts/ToolLayout.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedTools from '../components/RelatedTools.astro';
 import AdPlaceholder from '../components/AdPlaceholder.astro';
+import BannerAd from '../components/BannerAd.astro';
 import { getToolBySlug, SITE } from '../lib/tool-metadata';
 
 const tool = getToolBySlug('json-validator')!;
@@ -107,6 +108,7 @@ const jsonLd = [
 
   <FAQ items={faqItems} />
   <RelatedTools currentSlug="json-validator" />
+  <BannerAd />
 </ToolLayout>
 
 <script is:inline src="/scripts/validator.js"></script>

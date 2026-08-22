@@ -3,6 +3,7 @@ import ToolLayout from '../layouts/ToolLayout.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedTools from '../components/RelatedTools.astro';
 import AdPlaceholder from '../components/AdPlaceholder.astro';
+import BannerAd from '../components/BannerAd.astro';
 import { getToolBySlug, SITE } from '../lib/tool-metadata';
 
 const tool = getToolBySlug('json-minifier')!;
@@ -91,6 +92,7 @@ const afterJson = JSON.stringify({name:"JSONCraft",version:"1.0",tools:["formatt
 
   <FAQ items={faqItems} />
   <RelatedTools currentSlug="json-minifier" />
+  <BannerAd />
 </ToolLayout>
 
 <script is:inline src="/scripts/minifier.js"></script>

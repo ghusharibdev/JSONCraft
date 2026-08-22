@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedTools from '../components/RelatedTools.astro';
 import AdPlaceholder from '../components/AdPlaceholder.astro';
+import BannerAd from '../components/BannerAd.astro';
 import { SITE } from '../lib/tool-metadata';
 
 const faqItems = [
@@ -162,6 +163,7 @@ const jsonLd = [
 
       <FAQ items={faqItems} />
       <RelatedTools currentSlug="json-formatter" />
+      <BannerAd />
     </div>
   </main>
   <Footer />
