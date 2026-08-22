@@ -25,7 +25,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'JSONCraft - JSON Formatter',
-    url: SITE.url + '/json-beautifier',
+    url: SITE.url,
     description: 'Format, pretty-print, and organize JSON data instantly in your browser.',
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Any',
@@ -41,7 +41,7 @@ const jsonLd = [
   },
 ];
 ---
-<BaseLayout title="JSON Formatter Online — Free Pretty Print Tool | JSONCraft" description="Format JSON online for free. Pretty-print, indent, and organize JSON data instantly in your browser. No data uploaded. Fast, private, and accurate." canonical={SITE.url + '/json-beautifier'} jsonLd={jsonLd}>
+<BaseLayout title="JSON Formatter Online — Free Pretty Print Tool | JSONCraft" description="Format JSON online for free. Pretty-print, indent, and organize JSON data instantly in your browser. No data uploaded. Fast, private, and accurate." canonical={SITE.url} jsonLd={jsonLd}>
   <Header />
   <main>
     <div class="container tool-layout">
