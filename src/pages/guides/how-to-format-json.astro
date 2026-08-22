@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../lib/tool-metadata';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'How to Format JSON: A Complete Guide',
+    author: { '@type': 'Organization', name: 'JSONCraft' },
+    publisher: { '@type': 'Organization', name: 'JSONCraft' },
+    datePublished: '2025-01-01',
+    dateModified: '2025-01-01',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE.url + '/guides' },
+      { '@type': 'ListItem', position: 3, name: 'How to Format JSON', item: SITE.url + '/guides/how-to-format-json' },
+    ],
+  },
+];
+---
+<BaseLayout title="How to Format JSON: A Complete Guide | JSONCraft" description="Learn the best ways to format JSON data for readability, debugging, and production use. Step-by-step guide with examples." canonical={SITE.url + '/guides/how-to-format-json'} jsonLd={jsonLd}>
+  <Header />
+  <main>
+    <div class="container content-section">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="/guides">Guides</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="cur" aria-current="page">How to Format JSON</span>
+      </nav>
+
+      <h1>How to Format JSON: A Complete Guide</h1>
+      <p class="section-text">JSON (JavaScript Object Notation) is the most widely used data interchange format. But raw JSON is often minified, unindented, or difficult to read. This guide explains why formatting matters and how to do it effectively.</p>
+
+      <h2>Why Format JSON?</h2>
+      <p class="section-text">Unformatted JSON is functionally correct but painful to work with. Consider this API response:</p>
+      <pre><code set:html='{&quot;users&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;email&quot;:&quot;alice@example.com&quot;,&quot;roles&quot;:[&quot;admin&quot;,&quot;editor&quot;]},{&quot;id&quot;:2,&quot;name&quot;:&quot;Bob&quot;,&quot;email&quot;:&quot;bob@example.com&quot;,&quot;roles&quot;:[&quot;viewer&quot;]}]}' /></pre>
+      <p class="section-text">Now compare it with formatted JSON:</p>
+      <pre><code set:html='{&#10;  &quot;users&quot;: [&#10;    {&#10;      &quot;id&quot;: 1,&#10;      &quot;name&quot;: &quot;Alice&quot;,&#10;      &quot;email&quot;: &quot;alice@example.com&quot;,&#10;      &quot;roles&quot;: [&quot;admin&quot;, &quot;editor&quot;]&#10;    },&#10;    {&#10;      &quot;id&quot;: 2,&#10;      &quot;name&quot;: &quot;Bob&quot;,&#10;      &quot;email&quot;: &quot;bob@example.com&quot;,&#10;      &quot;roles&quot;: [&quot;viewer&quot;]&#10;    }&#10;  ]&#10;}' /></pre>
+      <p class="section-text">The second version reveals the structure immediately: an object containing a users array, each with an id, name, email, and roles array.</p>
+
+      <h2>When to Format JSON</h2>
+      <ul>
+        <li><strong>Debugging API responses</strong> — See the structure clearly when troubleshooting.</li>
+        <li><strong>Code review</strong> — When sharing JSON examples in pull requests or documentation.</li>
+        <li><strong>Configuration files</strong> — Make config files readable for your team.</li>
+        <li><strong>Learning and teaching</strong> — Understand data relationships in nested structures.</li>
+        <li><strong>Logging</strong> — Formatted logs are easier to scan and search.</li>
+      </ul>
+
+      <h2>Indentation Styles</h2>
+      <h3>2 Spaces (Recommended)</h3>
+      <p class="section-text">The most popular choice. Used by Prettier, ESLint, and many major projects. Balances readability with compactness.</p>
+      <pre><code set:html='{&#10;  &quot;name&quot;: &quot;JSONCraft&quot;,&#10;  &quot;version&quot;: &quot;1.0&quot;&#10;}' /></pre>
+
+      <h3>4 Spaces</h3>
+      <p class="section-text">Provides more visual separation between levels. Common in languages with deeper nesting.</p>
+      <pre><code set:html='{&#10;    &quot;name&quot;: &quot;JSONCraft&quot;,&#10;    &quot;version&quot;: &quot;1.0&quot;&#10;}' /></pre>
+
+      <h3>Tab Indentation</h3>
+      <p class="section-text">Uses tab characters instead of spaces. Less common for JSON but useful when your team or project requires it.</p>
+
+      <h2>How to Format JSON Online</h2>
+      <ol>
+        <li>Open the <a href="/json-formatter">JSON Formatter</a>.</li>
+        <li>Paste your unformatted JSON into the input editor.</li>
+        <li>Select your preferred indentation (2 spaces is the default).</li>
+        <li>Click <strong>Format</strong> or press <code>Ctrl+Enter</code>.</li>
+        <li>Copy or download the formatted result.</li>
+      </ol>
+
+      <h2>Formatting JSON in Code</h2>
+      <p class="section-text">Most programming languages have built-in JSON formatting:</p>
+      <h3>JavaScript</h3>
+      <pre><code>JSON.stringify(data, null, 2);</code></pre>
+      <h3>Python</h3>
+      <pre><code>import json
+print(json.dumps(data, indent=2))</code></pre>
+      <h3>Bash (using jq)</h3>
+      <pre><code>cat data.json | jq '.'</code></pre>
+
+      <h2>Common Mistakes</h2>
+      <ul>
+        <li><strong>Assuming minified JSON is broken</strong> — Minified JSON is valid; it just lacks whitespace for human readability.</li>
+        <li><strong>Adding comments</strong> — JSON does not support comments. Use a separate documentation file instead.</li>
+        <li><strong>Trailing commas</strong> — The last element in an array or object must not have a trailing comma.</li>
+        <li><strong>Single quotes</strong> — JSON strings must use double quotes. Single quotes cause parse errors.</li>
+      </ul>
+
+      <h2>Best Practices</h2>
+      <ul>
+        <li>Use 2 spaces for consistency with most tools and formatters.</li>
+        <li>Store configuration files in formatted JSON for readability.</li>
+        <li>Minify JSON only for network transfer or storage optimization.</li>
+        <li>Validate before formatting to catch syntax errors early.</li>
+        <li>Use the <a href="/json-validator">JSON Validator</a> to check validity before formatting.</li>
+      </ul>
+
+      <div class="privacy-note" style="margin-top:var(--space-8)">
+        <span class="icon">&#128274;</span>
+        <div>Try the <a href="/json-formatter">JSON Formatter</a> to format your JSON instantly. All processing happens in your browser.</div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
