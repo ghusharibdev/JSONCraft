@@ -12,7 +12,7 @@ export interface ToolMeta {
 
 export const SITE = {
   name: 'JSONCraft',
-  url: 'https://jsoncraft.dev',
+  url: 'https://jsoncraft-app.pages.dev',
   tagline: 'Free online JSON tools for developers',
   description: 'Format, validate, minify, and beautify JSON instantly in your browser. Fast, free, private — no data leaves your device.',
 };
