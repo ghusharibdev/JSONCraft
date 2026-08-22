@@ -1,0 +1,35 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="JSONCraft Home">
+      <span class="logo-icon" aria-hidden="true">{ }</span>
+      <span>JSONCraft</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/json-formatter">Formatter</a>
+      <a href="/json-validator">Validator</a>
+      <a href="/json-minifier">Minifier</a>
+      <a href="/json-beautifier">Beautifier</a>
+      <a href="/tools">All Tools</a>
+      <a href="/guides">Guides</a>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+<script is:inline>
+(function(){
+  var btn=document.querySelector('.nav-toggle');
+  var nav=document.querySelector('.nav-links');
+  if(btn&&nav){
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded',String(open));
+    });
+  }
+})();
+</script>

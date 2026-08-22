@@ -1,0 +1,36 @@
+---
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+export interface Props {
+  items: FaqItem[];
+}
+const { items } = Astro.props;
+---
+<section class="faq-section" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="section-title">Frequently Asked Questions</h2>
+  <div>
+    {items.map((item, i) => (
+      <details class="faq-item">
+        <summary class="faq-q" aria-expanded="false">
+          {item.question}
+          <span class="arrow" aria-hidden="true">&#9660;</span>
+        </summary>
+        <div class="faq-a">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+<script is:inline>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(function(d){
+    d.addEventListener('toggle',function(){
+      var s=d.querySelector('.faq-q');
+      if(s)s.setAttribute('aria-expanded',String(d.open));
+    });
+  });
+})();
+</script>

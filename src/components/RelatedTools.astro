@@ -1,0 +1,17 @@
+---
+import { getRelatedTools } from '../lib/tool-metadata';
+export interface Props { currentSlug: string; }
+const { currentSlug } = Astro.props;
+const related = getRelatedTools(currentSlug);
+---
+<section class="related-tools" aria-labelledby="related-heading">
+  <h2 id="related-heading" class="section-title">Related JSON Tools</h2>
+  <div class="related-grid">
+    {related.map(tool => (
+      <a href={`/${tool.slug}`} class="related-card">
+        <h3>{tool.name}</h3>
+        <p>{tool.description}</p>
+      </a>
+    ))}
+  </div>
+</section>
