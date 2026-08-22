@@ -1,6 +1,6 @@
-.theme-toggle{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-full);width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--color-text-muted);transition:all var(--transition-fast)}
-.theme-toggle:hover{border-color:var(--color-primary);color:var(--color-primary);background:var(--color-primary-light);box-shadow:0 0 16px rgba(124,92,252,0.2)}
-.theme-toggle svg{width:18px;height:18px}
+.theme-toggle{background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:var(--radius-sm);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);transition:var(--transition)}
+.theme-toggle:hover{border-color:var(--accent-primary);color:var(--accent-primary);background:var(--accent-glow)}
+.theme-toggle svg{width:16px;height:16px}
 .theme-toggle .icon-sun{display:none}
 .theme-toggle .icon-moon{display:block}
 [data-theme="dark"] .theme-toggle .icon-sun{display:block}
