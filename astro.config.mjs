@@ -6,8 +6,7 @@ export default defineConfig({
   output: 'static',
   integrations: [sitemap()],
   build: {
-    format: 'directory',
-    assets: 'assets'
+    format: 'directory'
   },
   vite: {
     build: {
